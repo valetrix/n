@@ -98,8 +98,28 @@ jobs:
               exit 1
           }
           Write-Host "TCP connectivity successful!"
+        # docker-compose.yml
+version: "3.8"
 
+services:
+  gaming-pc:
+    image: nvidia/cuda:12.8.0-base-ubuntu24.04
+    container_name: virtual-gaming-pc
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    ports:
+      - "3389:3389"
+      - "5900:5900"
+    volumes:
+      - ./games:/games
+    command: /bin/bash
       - name: Maintain Connection
+
+      NVIDIA GeForce RTX 5080
+VRAM: 16GB
+CUDA Version: 12.x
+
         run: |
           Write-Host "`n=== RDP ACCESS ==="
           Write-Host "Address: $env:TAILSCALE_IP"
